@@ -1,0 +1,185 @@
+﻿<Window x:Class="Weather.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+     
+        xmlns:local="clr-namespace:Weather"
+        Title="MainWindow" Height="700" Width="1000" Background="Transparent"  WindowStyle="None" AllowsTransparency="True" WindowStartupLocation="CenterScreen" FontFamily="Cruinn">
+    <Grid >
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="260"/>
+            <ColumnDefinition Width="*"/>
+           
+        </Grid.ColumnDefinitions>
+        <Border Grid.ColumnSpan="2"  Height="700" Width="1000" >
+            <Border.Effect>
+                <BlurEffect Radius="18" KernelType="Gaussian" ></BlurEffect>
+            </Border.Effect>
+            <Border.Background>
+                <ImageBrush ImageSource="/Img/IMG_3145.jpg" />
+            </Border.Background>
+        </Border>
+
+        <!--Left Side-->
+        <Border CornerRadius="30 0 0 30" Background="Transparent">
+            <StackPanel>
+                <!--TextBox Search-->
+                <Border BorderBrush="#d9d9d9" BorderThickness="1" CornerRadius="15" HorizontalAlignment="Center" Width="200" Margin="0 35 0 0">
+                    <Grid Margin="7 7">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Image Source="/Img/CloseBtn.png" Height="18" Margin="5 0 0 0"/>
+                        <TextBlock x:Name="textSearch" MouseDown="textSearch_MouseDown" Text="Search ..." Style="{StaticResource textHint}"/>
+                        <TextBox Name="txtSearch" TextChanged="txtSearch_TextChanged" Style="{StaticResource textBox}"/>
+                    </Grid>
+                </Border>
+
+                <StackPanel Margin="50 60 0 0">
+                    <Image Source="/Img/sad.png" Height="140"  Width="140" HorizontalAlignment="Left" />
+                    <TextBlock Foreground="White" Text="12°c" FontSize="46" Margin="0 20 0 0"/>
+                    <TextBlock Foreground="White" Text="Monday, 13:15" FontSize="18" FontWeight="SemiBold" Margin="0 15 0 0"/>
+                    <Separator Background="#dadada" Margin="3 30 40 30" Height="0.8"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Img/sun.png" Width="20" Height="20"/>
+                        <TextBlock Foreground="White" Text="Sunny" FontSize="14" FontWeight="SemiBold" Margin="10 0 0 0" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 15 0 77">
+                        <Image Source="/Img/like.png" Width="20" Height="20"/>
+                        <TextBlock Foreground="White" Text="Rainless" FontSize="14" FontWeight="SemiBold" Margin="10 0 0 0" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <Border CornerRadius="15" Background="Transparent" Margin="30 0">
+                    <Border CornerRadius="15" Padding="0 30">
+
+
+                        <TextBlock Text="Boston" Foreground="#FFFFFF" VerticalAlignment="Center" TextAlignment="Center" FontWeight="Bold" FontSize="24"/>
+                    </Border>
+                </Border>
+
+            </StackPanel>
+        </Border>
+
+        <!--Right Side-->
+        <Border Grid.Column="1" CornerRadius="0 30 30 0" MouseDown="Border_MouseDown" Background="Transparent" >
+            <StackPanel>
+                <!--Top Menu-->
+                <Grid Margin="40 30 40 10">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <Label Content="Today" Style="{StaticResource textButton}"/>
+                        <Label Content="Week" Style="{StaticResource activeTextButton}" Margin="15 0 0 0"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Content="°C" Style="{StaticResource button}" Background="#1A1A1A" Foreground="#FFFFFF"/>
+                        <Button Content="°F" Style="{StaticResource button}" Margin="10 0 0 0"/>
+                    </StackPanel>
+                </Grid>
+
+                <!--Week Days-->
+                <StackPanel Orientation="Horizontal" Margin="40 20 0 20">
+                    <local:DayControl Day="Mon" MaxTemp="16°" MinTemp="3°" Img="Img/sun_cloud.png" Background="Black"/>
+                    <local:DayControl Day="Tue" MaxTemp="16°" MinTemp="3°" Img="Img/snow.png"/>
+                    <local:DayControl Day="Wed" MaxTemp="16°" MinTemp="3°" Img="Img/snow.png"/>
+                    <local:DayControl Day="Thu" MaxTemp="16°" MinTemp="3°" Img="Img/snow.png"/>
+                    <local:DayControl Day="Fri" MaxTemp="16°" MinTemp="3°" Img="Img/snow.png"/>
+                    <local:DayControl Day="Sat" MaxTemp="16°" MinTemp="3°" Img="Img/snow.png"/>
+                    <local:DayControl Day="Sun" MaxTemp="16°" MinTemp="3°" Img="Img/snow.png"/>
+
+
+                </StackPanel>
+
+                <TextBlock Text="Weather details for today" Foreground="White" FontSize="16" FontWeight="SemiBold" Margin="40 10 0 10"/>
+
+                <!--Widget Section-->
+                <WrapPanel Margin="40 0 0 0">
+                    
+                    <Border Style="{StaticResource widgetBorder}" Background="#BE252525">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="20" ShadowDepth="0" Opacity="0.4" Color="#19a0fe"></DropShadowEffect>
+                        </Border.Effect>
+                        <Grid>
+                            <TextBlock Foreground="White" Text="Wind" Style="{StaticResource titleText}"/>
+
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <TextBlock Foreground="White" Text="3.0" FontSize="34" FontWeight="SemiBold"/>
+                                <TextBlock Foreground="White" Text="m/s" FontSize="14" VerticalAlignment="Bottom" Margin="5 0 0 3"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
+                                <Image Source="/Img/dir.png" Width="25" Height="25" Margin="0 0 10 0"/>
+                                <TextBlock Foreground="White" Text="South" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+
+                  
+                    <Border Style="{StaticResource widgetBorder}"  Background="#BF252525">
+                        <StackPanel>
+                            <TextBlock Text="Daylight" Foreground="White" Style="{StaticResource titleText}"/>
+
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0 25 0 0">
+                                <Image Source="/Img/sunrise.png" Width="40" Height="40" Margin="0 0 10 0"/>
+                                <StackPanel>
+                                    <TextBlock Foreground="White" Text="6:35 AM" FontSize="16" FontWeight="SemiBold"/>
+                                    <TextBlock Foreground="White" Text="-1m 46s" FontSize="12" Margin="0 2 0 0" />
+                                </StackPanel>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0 10 0 0">
+                                <Image Source="/Img/sunset.png" Width="40" Height="40" Margin="0 0 10 0"/>
+                                <StackPanel>
+                                    <TextBlock Text="5:12 AM" Foreground="White" FontSize="16" FontWeight="SemiBold"/>
+                                    <TextBlock Text="+2m 15s" Foreground="White" FontSize="12" Margin="0 2 0 0"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+             
+                    <Border Style="{StaticResource widgetBorder}" Background="#BE252525">
+                        <Grid>
+                            <TextBlock Text="Humidity" Foreground="White" Style="{StaticResource titleText}"/>
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <TextBlock Text="92" FontSize="34" Foreground="White" FontWeight="SemiBold"/>
+                                <TextBlock Text="%" FontSize="14" Foreground="White" VerticalAlignment="Bottom" Margin="5 0 0 3"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
+                                <Image Source="/Img/water.png" Width="18" Height="18" Margin="0 0 10 0"/>
+
+                                <TextBlock Text="Normal" Foreground="White" FontWeight="SemiBold"/>
+                            </StackPanel>
+
+                        </Grid>
+                    </Border>
+
+                   
+                   
+
+                    <Border Style="{StaticResource widgetBorder}" Background="#BE252525">
+                        <Grid>
+                            <TextBlock Text="Atmospheric pressure" Foreground="White" Style="{StaticResource titleText}"/>
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <TextBlock Text="759" Foreground="White" FontSize="34" FontWeight="SemiBold"/>
+                                <TextBlock Text="mm.Hg" Foreground="White" FontSize="14" VerticalAlignment="Bottom" Margin="5 0 0 3"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
+                                <Image Source="/Img/like.png" Width="18" Height="18" Margin="0 0 10 0"/>
+                                <TextBlock Text="Normal" Foreground="White"  FontWeight="SemiBold"/>
+                            </StackPanel>
+
+                        </Grid>
+                    </Border>
+
+                </WrapPanel>
+
+            </StackPanel>
+        </Border>
+
+    </Grid>
+</Window>
